@@ -9,7 +9,7 @@
     Generate a CSV BOM for use with JLCSMT service.
     Components are sorted by ref and grouped by value with same footprint
     Fields are (if exist).
-    LCSC Part numbers are copied from the "LCSC Part" field, if exists.
+    LCSC Part numbers are copied from the "LCSC Part #" field, if exists.
     It is possible to hide components from the BOM by setting the 
     "JLCPCB BOM" field to "0" or "false".
 
@@ -38,7 +38,7 @@ with open(sys.argv[2], 'w', newline='') as f:
             if component.getField('JLCPCB BOM') in ['0', 'false', 'False', 'FALSE']:
                 continue
             refs.append(component.getRef())
-            lcsc_pn = component.getField("LCSC Part") or lcsc_pn
+            lcsc_pn = component.getField("LCSC Part #") or lcsc_pn
             c = component
 
         if len(refs) == 0:
